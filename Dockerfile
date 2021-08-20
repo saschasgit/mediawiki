@@ -1,4 +1,4 @@
-FROM openshift/base-rhel8:latest
+FROM openshift/ubi:8.0
 
 ENV USER_NAME=www-data \
     USER_UID=1001 \
