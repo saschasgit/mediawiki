@@ -1,4 +1,4 @@
-FROM openshift/ubi8/ubi:8.0
+FROM registry.access.redhat.com/ubi8/ubi:8.4
 
 ENV USER_NAME=www-data \
     USER_UID=1001 \
