@@ -6,7 +6,7 @@ ENV USER_NAME=www-data \
     PHP=71 \
     HOME=${BASE_DIR}
 
-RUN yum -y install mediawiki httpd \
+RUN yum -y install httpd \
   && yum clean all
 
 EXPOSE 8080
