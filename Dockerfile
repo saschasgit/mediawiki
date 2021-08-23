@@ -10,4 +10,6 @@ RUN yum -y install httpd \
   && yum clean all
 
 EXPOSE 8080
+LABEL io.openshift.expose-services="8080:hhtp"
+RUN sed -i "s/Listen80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 USER ${USER_UID}
