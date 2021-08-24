@@ -1,4 +1,5 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.4
+# FROM registry.access.redhat.com/ubi8/ubi:8.4
+FROM registry.access.redhat.com/ubi8/php-74:1-35
 
 # DocumentRoot for Apache
 ENV DOCROOT=/var/www/html
@@ -32,8 +33,8 @@ RUN cd /tmp && \
     curl https://releases.wikimedia.org/mediawiki/1.36/mediawiki-1.36.1.tar.gz --output mediawiki.tar.gz && \
     tar -xzf mediawiki.tar.gz && \
     rm -f /tmp/mediawiki.tar.gz && \
-    cp -R /tmp/mediawiki-1.36.1/* /var/www/html && \
-    echo "Hallo" > /var/www/html/index.html
+    cp -R /tmp/mediawiki-1.36.1/* /var/www/html
+#    echo "Hallo" > /var/www/html/index.html
 
 USER 1001
 
