@@ -27,13 +27,12 @@ RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 RUN chgrp -R 0 /var/log/httpd /var/run/httpd && \
     chmod -R g=u /var/log/httpd /var/run/httpd
 
-# Download Mediawiki an copy to target folder
-RUN mkdir -p /tmp/mediawiki && \
-    cd /tmp/mediawiki && \
+# Download Mediawiki and copy to target folder
+RUN cd /tmp && \
     curl https://releases.wikimedia.org/mediawiki/1.36/mediawiki-1.36.1.tar.gz --output mediawiki.tar.gz && \
     tar -xzf mediawiki.tar.gz && \
-    rm -f /tmp/mediawiki/mediawiki.tar.gz
-
+    rm -f /tmp/mediawiki.tar.gz && \
+    cp -R /tmp/mediawiki-1.36.1/* /var/www/html
 
 USER 1001
 
