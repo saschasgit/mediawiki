@@ -6,17 +6,11 @@ ENV DOCROOT=/var/www/html
 RUN yum install -y --nodocs --disableplugin=subscription-manager httpd && \
     yum clean all --disableplugin=subscription-manager -y
 
-
-
-
 #ENV USER_NAME=www-data \
 #    USER_UID=1001 \
 #    BASE_DIR=/home/www-data \
 #    PHP=74 \
 #    HOME=${BASE_DIR}
-
-#RUN yum -y install httpd \
-#  && yum clean all
 
 EXPOSE 8080
 
@@ -32,6 +26,14 @@ RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
 
 RUN chgrp -R 0 /var/log/httpd /var/run/httpd && \
     chmod -R g=u /var/log/httpd /var/run/httpd
+
+# Download Mediawiki an copy to target folder
+RUN mkdir -p /tmp/mediawiki && \
+    cd /tmp/mediawiki && \
+    curl https://releases.wikimedia.org/mediawiki/1.36/mediawiki-1.36.1.tar.gz --output mediawiki.tar.gz && \
+    tar -xzf mediawiki.tar.gz && \
+    rm -f /tmp/mediawiki/mediawiki.tar.gz
+
 
 USER 1001
 
