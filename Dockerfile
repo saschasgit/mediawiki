@@ -32,7 +32,8 @@ RUN cd /tmp && \
     curl https://releases.wikimedia.org/mediawiki/1.36/mediawiki-1.36.1.tar.gz --output mediawiki.tar.gz && \
     tar -xzf mediawiki.tar.gz && \
     rm -f /tmp/mediawiki.tar.gz && \
-    cp -R /tmp/mediawiki-1.36.1/* /var/www/html
+    cp -R /tmp/mediawiki-1.36.1/* /var/www/html && \
+    echo "Hallo" > /var/www/html/index.html
 
 USER 1001
 
