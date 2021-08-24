@@ -1,4 +1,4 @@
-FROM ubi8/php-74
+FROM ubi8/php-74:latest
 
 # Add application sources to a directory that the assemble script expects them
 # and set permissions so that the container runs without root access
