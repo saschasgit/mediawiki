@@ -8,7 +8,7 @@ USER 1001
 # Let the assemble script install the dependencies
 RUN /usr/libexec/s2i/assemble
 
-RUN sed -i "/Listen 0.0.0.0:8080/aListen 0.0.0.0:8443" /etc/httpd/conf/httpd.conf
+RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf
 
 EXPOSE 8080
 EXPOSE 8443
