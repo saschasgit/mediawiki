@@ -16,7 +16,7 @@ RUN cd /tmp && \
 RUN /usr/libexec/s2i/assemble
 
 RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf
-RUN sed -i "s/error_reporting = E_ALL \& \~E_NOTICE/error_reporting = E_ALL \& \~E_NOTICE \& \~E_DEPRECATED/g" /etc/php.ini
+RUN sed -i "s/error_reporting = E_ALL & ~E_NOTICE/error_reporting = E_ALL \& \~E_NOTICE \& \~E_DEPRECATED/g" /etc/php.ini
 
 EXPOSE 8080
 EXPOSE 8443
