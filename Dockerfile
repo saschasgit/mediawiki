@@ -4,11 +4,11 @@ USER 0
 ADD app-src/mediawiki-1.36.1.tar.gz /tmp/
 RUN mv /tmp/mediawiki-1.36.1 /tmp/src && \
     chown -R 1001:0 /tmp/src
-# The following copy is only temporary needed.
-# The reason is a bug in the actual version of MediaWiki that causes "Deprecated" errors on every page.
+# The following copy is only temporary needed for mediawiki-1.36.1.
+# The reason is a bug in this version of MediaWiki that causes "Deprecated" errors on every page.
 # Therefore in the php.ini the value for "error-reporting" has altered from 
 # "error_reporting = E_ALL & ~E_NOTICE" to "error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED"
-COPY app-src/php.ini /etc/
+#COPY app-src/php.ini /etc/
 USER 1001
 
 #Download Mediawiki and copy to target folder
