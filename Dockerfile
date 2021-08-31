@@ -1,8 +1,13 @@
 FROM registry.access.redhat.com/ubi8/php-73:latest
 
 USER 0
-ADD app-src/mediawiki-1.36.1.tar.gz /tmp/src
-RUN chown -R 1001:0 /tmp/src
+ADD app-src/mediawiki-1.36.1.tar.gz /tmp/
+RUN mv /tmp/mediawiki-1.36.1 /tmp/src && \
+    chown -R 1001:0 /tmp/src
+# The following copy is only temporary needed.
+# The reason is a bug in the actual version of MediaWiki that causes "Deprecated" errors on every page.
+# Therefore in the php.ini the value for "error-reporting" has altered from 
+# "error_reporting = E_ALL & ~E_NOTICE" to "error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED"
 COPY app-src/php.ini /etc/
 USER 1001
 
