@@ -1,8 +1,9 @@
 FROM registry.access.redhat.com/ubi8/php-73:latest
 
 USER 0
-ADD app-src /tmp/src
-RUN chown -R 1001:0 /tmp/src
+#ADD app-src /tmp/src
+#RUN chown -R 1001:0 /tmp/src
+COPY app-src/php.ini /etc/
 USER 1001
 
 #Download Mediawiki and copy to target folder
@@ -16,9 +17,10 @@ RUN cd /tmp && \
 RUN /usr/libexec/s2i/assemble
 
 RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf
-USER 0
-RUN sed -i "s/error_reporting = E_ALL & ~E_NOTICE/error_reporting = E_ALL \& \~E_NOTICE \& \~E_DEPRECATED/g" /etc/php.ini
-USER 1001
+#USER 0
+#RUN sed -i "s/error_reporting = E_ALL & ~E_NOTICE/error_reporting = E_ALL \& \~E_NOTICE \& \~E_DEPRECATED/g" /etc/php.ini && \
+    echo $?
+#USER 1001
 
 EXPOSE 8080
 EXPOSE 8443
