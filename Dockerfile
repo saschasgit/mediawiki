@@ -22,14 +22,17 @@ COPY app-src/phpinfo.php /tmp/src
 # Let the assemble script install the dependencies
 RUN /usr/libexec/s2i/assemble
 
-RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf && \
+#RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf && \
+#    sed -i "1a error_reporting(3);" /opt/app-root/src/index.php
+
+RUN sed -i "s/Listen 0.0.0.0:8080/Listen 8443/g" /etc/httpd/conf/httpd.conf && \
     sed -i "1a error_reporting(3);" /opt/app-root/src/index.php
 #USER 0
 #RUN sed -i "s/error_reporting = E_ALL & ~E_NOTICE/error_reporting = E_ALL \& \~E_NOTICE \& \~E_DEPRECATED/g" /etc/php.ini && \
 #    echo $?
 #USER 1001
 
-EXPOSE 8080
+#EXPOSE 8080
 EXPOSE 8443
 
 # The run script uses standard ways to run the application
