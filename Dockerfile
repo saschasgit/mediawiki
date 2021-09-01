@@ -22,7 +22,8 @@ COPY app-src/phpinfo.php /tmp/src
 # Let the assemble script install the dependencies
 RUN /usr/libexec/s2i/assemble
 
-RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf
+RUN sed -i "/Listen 0.0.0.0:8080/aListen 8443" /etc/httpd/conf/httpd.conf && \
+    sed "1a error_reporting(E_ALL \& ~E_NOTICE \& ~E_DEPRECATED);" /opt/app-root/src/index.php
 #USER 0
 #RUN sed -i "s/error_reporting = E_ALL & ~E_NOTICE/error_reporting = E_ALL \& \~E_NOTICE \& \~E_DEPRECATED/g" /etc/php.ini && \
 #    echo $?
