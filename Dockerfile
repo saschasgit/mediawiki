@@ -10,6 +10,7 @@ RUN mv /tmp/mediawiki-1.36.1 /tmp/src && \
 # "error_reporting = E_ALL & ~E_NOTICE" to "error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED"
 #COPY app-src/php.ini /etc/
 USER 1001
+COPY app-src/phpinfo.php /tmp/src
 
 #Download Mediawiki and copy to target folder
 #RUN cd /tmp && \
