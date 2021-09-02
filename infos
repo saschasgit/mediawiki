@@ -6,8 +6,11 @@ Document Root: /opt/app-root/src
 
 LocalSettings.php liegt recht sicher im Document Root.
 Sessions-Folder: /tmp/sessions/
-Der Sessions-Folder ist in der php.ini definiert. Den müssen wir dann eventuell ändern in den "var"-Folder.
-Zudem ist per Default die Art der Session Verwaltung auf "Files" gestellt (imho gut).
+Per Default die Art der Session Verwaltung auf "Files" gestellt (imho gut).
+Der Sessions-Folder ist in der php.ini definiert. Den sollten wir dann ändern in den "var"-Folder oder Redis.
+Grund: 
+Der tmp-Ordner wird regelmäßig durch die Konfiguration in der /usr/lib/tmpfiles.d/tmp.conf geleert.
+In diesem Umfeld mit Pods würden daher regelmäßig die Sessions gelöscht.
 
 https Route (nicht sicher, da Zertifikat fehlt).
 Eventuell auf Edge-Route ausweichen und Zertifikat in OpenShift zur Verfügung stellen.
