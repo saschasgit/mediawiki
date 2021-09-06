@@ -18,6 +18,17 @@ Fragen, woher Siemens da Routenzertifikate nimmt (oder mal mit Ludger besprechen
 
 Das Image von Redhat (registry.access.redhat.com/ubi8/php-74:1-35) kann nicht genommen werden, da es nur PHP4.6 beinhaltet. Benötigt wird PHP4.9+.
 
+PostGres:
+db: wikidb
+user: wikiuser // wikiuser
+
+oc set volume deployment/mywiki --add --name=localsettings --type=configmap --configmap-name=localsettings --mount-path='/opt/app-root/src/LocalSettings.php' --sub-path='LocalSettings.php'
+
+Redis Passwort ist im Secret von Redis.
+
+redisphp client
+https://tecadmin.net/install-redis-on-centos-8/
+
 Security:
 debyum.com/top-10-php-security-best-practices/#dec-7-2016-5
 
