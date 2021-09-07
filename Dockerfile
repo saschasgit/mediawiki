@@ -23,8 +23,9 @@ RUN sed -i "s/Listen 0.0.0.0:8080/Listen 8443/g" /etc/httpd/conf/httpd.conf && \
     sed -i "1a error_reporting(3);" /opt/app-root/src/index.php
 #    echo -e "\nextension=igbinary.so\nextension=igbinary.so\nextension=redis.so" >> /etc/php.ini
 USER 0
-RUN sed -i -e "\$aextension=igbinary.so" /etc/php.ini
-RUN sed -i -e "\$aextension=redis.so" /etc/php.ini
+#RUN sed -i -e "\$aextension=igbinary.so" /etc/php.ini
+#RUN sed -i -e "\$aextension=redis.so" /etc/php.ini
+echo -e "\nextension=igbinary.so\nextension=igbinary.so\nextension=redis.so" >> /etc/php.ini
 USER 1001
 
 EXPOSE 8443
