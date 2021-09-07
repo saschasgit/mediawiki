@@ -20,8 +20,11 @@ RUN /usr/libexec/s2i/assemble
 # The line for the index.php is only temporary needed for mediawiki-1.36.1.
 # The reason is a bug in this version of MediaWiki that causes "Deprecated" errors on every page.
 RUN sed -i "s/Listen 0.0.0.0:8080/Listen 8443/g" /etc/httpd/conf/httpd.conf && \
-    sed -i "1a error_reporting(3);" /opt/app-root/src/index.php && \
-    echo -e "\nextension=igbinary.so\nextension=igbinary.so\nextension=redis.so" >> /etc/php.ini
+    sed -i "1a error_reporting(3);" /opt/app-root/src/index.php
+#    echo -e "\nextension=igbinary.so\nextension=igbinary.so\nextension=redis.so" >> /etc/php.ini
+RUN sed -i -e "\$aextension=igbinary.so" /etc/php.ini
+RUN sed -i -e "\$aextension=redis.so" /etc/php.ini
+
 
 EXPOSE 8443
 
