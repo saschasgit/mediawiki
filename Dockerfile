@@ -15,7 +15,8 @@ RUN /usr/libexec/s2i/assemble
 # The reason is a bug in this version of MediaWiki that causes "Deprecated" errors on every page.
 RUN sed -i "s/Listen 0.0.0.0:8080/Listen 8443/g" /etc/httpd/conf/httpd.conf && \
     sed -i "1a error_reporting(3);" /opt/app-root/src/index.php && \
-    yum -y install redis-server php-redis
+    yum -y install php-pear php-devel && \
+    pecl install igbinary igbinary-devel redis
 
 EXPOSE 8443
 
