@@ -4,6 +4,7 @@ USER 0
 ADD app-src/mediawiki-1.36.1.tar.gz /tmp/
 RUN mv /tmp/mediawiki-1.36.1 /tmp/src && \
     chown -R 1001:0 /tmp/src
+COPY app-src/php.ini /etc/php.ini
 RUN yum -y install php-pear php-devel
 RUN pecl install igbinary igbinary-devel redis
 RUN pear config-set php_ini /etc/php.ini
