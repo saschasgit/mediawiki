@@ -6,7 +6,7 @@ RUN mv /tmp/mediawiki-1.36.1 /tmp/src && \
     chown -R 1001:0 /tmp/src
 RUN yum -y install php-pear php-devel
 RUN pecl install igbinary igbinary-devel redis
-RUN echo "\nextension=igbinary.so\nextension=igbinary.so\nextension=redis.so" >> /etc/php.ini
+RUN echo -e "\nextension=igbinary.so\nextension=igbinary.so\nextension=redis.so" >> /etc/php.ini
 USER 1001
 #COPY app-src/phpinfo.php /tmp/src
 
