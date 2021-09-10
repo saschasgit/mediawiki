@@ -3,6 +3,8 @@ oc new-app --name mywiki https://github.com/saschasgit/mediawiki
 oc create route passthrough mywiki --service=mywiki --port=8443
 oc set volume deployment/mywiki --add --name=localsettings --type=configmap --configmap-name=localsettingsredis --mount-path='/opt/app-root/src/LocalSettings.php' --sub-path='LocalSettings.php'
 
+Bei Bedarf configmap erstellen:
+oc create configmap localsettingsredis --from-file=./LocalSettingsRedis/LocalSettings.php
 
 Document Root: /opt/app-root/src
 
